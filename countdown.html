@@ -16,7 +16,7 @@
 			<div class="col-md-6">
 				<div id="home" class="visible">
 					<input type="number" name="time" id="time" class="form-control" placeholder="Insira o tempo para contar!!">
-					<button id="submit" class="btn btn-secundary btn-block">COMEÇAR</button>
+					<button id="submit" class="btn btn-secundary btn-block" onclick="startHome()">COMEÇAR</button>
 				</div>
 				<div id="countdown" class="d-none">
 					<center><img src="https://thumbs.gfycat.com/SelfreliantClutteredBlackpanther-max-1mb.gif">
@@ -32,10 +32,15 @@
 	</div>
 	<script type="text/javascript">
 		function startHome(){
-
+			var time = parseInt(document.getElementsByName("time")[0].value);
+			if(time<=0 || time%2!=0){
+				alert('Valor inválido!');
+			}
+			startCountdown(time);
 		}
 		function startCountdown(time){
-			
+			document.getElementById("home").className = "d-none";
+			document.getElementById("countdown").className = "visible";
 		}
 		function startSuccess(){
 			
