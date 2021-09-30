@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -20,40 +20,61 @@
 				</div>
 				<div id="countdown" class="d-none">
 					<center><img src="https://thumbs.gfycat.com/SelfreliantClutteredBlackpanther-max-1mb.gif">
-					<p>Segundos</p></center>
+					<p id="segundos">segundos</p></center>
 				</div>
 				<div id="tetra" class="d-none">
 					<center><img src="https://thumbs.gfycat.com/DifferentDimpledHamster-max-1mb.gif"></center>
-					<button id="restart" name="restart" class="btn btn-secundary btn-block">Reiniciar</button>
+					<button id="restart" name="restart" class="btn btn-secundary btn-block mt-5" onclick="startHome()">Reiniciar</button>
 				</div>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
 	</div>
 	<script type="text/javascript">
+        var segundos = document.getElementById('segundos');
+        var segundo = document.getElementById('texto');
 		function startHome(){
+            document.getElementById("countdown").className = "d-none";
+            document.getElementById("tetra").className = "d-none";
+            document.getElementById("home").className = "visible";
 			var time = parseInt(document.getElementsByName("time")[0].value);
-			if(time<=0 || time%2!=0){
-				alert('Valor inválido!');
+			if(!time){
+				alert('Insira um valor para o countdown!');
+                return
 			}
 			startCountdown(time);
 		}
 		function startCountdown(time){
 			document.getElementById("home").className = "d-none";
 			document.getElementById("countdown").className = "visible";
+            segundos.innerHTML=time+" segundos";
+            let interval = setInterval(function(){
+                time--;
+                if(time<=0){
+                    clearInterval(interval);
+                    startSuccess();
+                }else{
+                    segundos.innerHTML=time+" segundos";
+                    if(time==1){
+                        segundos.innerHTML=time+" segundo";
+                    }
+                }
+            },1000);
 		}
 		function startSuccess(){
-			
+			document.getElementById("countdown").className = "d-none";
+            document.getElementById("tetra").className = "visible";
+            document.getElementsByName("time")[0].value = null;
 		}
 	</script>
 </body>
-</html>
+</html> -->
 
 
 
 
 
-<!-- <html>
+<html>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <body style="text-align: center;">
         <h1 style="text-align: center;margin-top: 40px; margin-bottom: 20px;">
@@ -145,4 +166,4 @@
 
         }
     </script>
-</html> -->
+</html>
